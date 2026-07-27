@@ -142,8 +142,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // HIER IST DIE NEUE UND RICHTIGE ID:
-    const sheetId = '1fP97sZGxXjA-vDOV2wpWtw16W74EhP_urhCaFIspjaQ';
+    // UPDATED: Now pointing to your new master Google Sheet
+    const sheetId = '1YuctUlkn8MGyF1qDSOe0Zf3V7utEsS_pVaYe84fRYfM';
     const settingsUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=Einstellungen&headers=1`;
     const cateringGalleryUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=Bilder Catering&headers=1`;
 
@@ -221,8 +221,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     emailBtn.textContent = '✉️ ' + settings['email'];
                     emailBtn.href = 'mailto:' + settings['email'];
                 }
-                
-                // HINWEIS: Der fehlerhafte Footer-Code wurde hier gelöscht!
             }
 
             if (cateringTable && cateringTable.rows && cateringTable.rows.length > 0) {
