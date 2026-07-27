@@ -300,9 +300,11 @@ window.addEventListener('DOMContentLoaded', () => {
     }));
 
     // --- Google Apps Script URL ---
-    const appScriptUrl = 'https://script.google.com/macros/s/AKfycbzOq403kNYnhu0bsyS84B0H_-h_LopKyeJSXoXOs1WSqNCFjIpxVRa9zpV6gNKSUH8/exec';
+    // UPDATED to the new Web-App ID
+    const appScriptUrl = 'https://script.google.com/macros/s/AKfycbwsKkp6qULlCDlVNqPR5N_v0uv7uKm7X3hcgJhRFcaGLnDKTj5WTlLd14Irvbw9aF9E8w/exec';
     
-    const sheetId = '1fP97sZGxXjA-vDOV2wpWtw16W74EhP_urhCaFIspjaQ'; 
+    // UPDATED to the new Google Sheet ID
+    const sheetId = '1YuctUlkn8MGyF1qDSOe0Zf3V7utEsS_pVaYe84fRYfM'; 
     const settingsUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=Einstellungen&headers=1`;
     const hoursUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=%C3%96ffnungszeiten&headers=1`;
     const galleryUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=Bildergalerie&headers=1`;
