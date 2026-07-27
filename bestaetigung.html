@@ -1,5 +1,7 @@
 ---
 ---
+---
+---
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -119,9 +121,9 @@
 {% include footer.html %}
 
 <script>
-// Google Apps Script & Settings URLs
-const GAS_URL = "https://script.google.com/macros/s/AKfycbzOq403kNYnhu0bsyS84B0H_-h_LopKyeJSXoXOs1WSqNCFjIpxVRa9zpV6gNKSUH8/exec";
-const GOOGLE_SHEET_SETTINGS_URL = 'https://docs.google.com/spreadsheets/d/1fP97sZGxXjA-vDOV2wpWtw16W74EhP_urhCaFIspjaQ/export?format=csv&gid=931186417';
+// Google Apps Script & Settings URLs (UPDATED TO NEW IDs)
+const GAS_URL = "https://script.google.com/macros/s/AKfycbwsKkp6qULlCDlVNqPR5N_v0uv7uKm7X3hcgJhRFcaGLnDKTj5WTlLd14Irvbw9aF9E8w/exec";
+const GOOGLE_SHEET_SETTINGS_URL = 'https://docs.google.com/spreadsheets/d/1YuctUlkn8MGyF1qDSOe0Zf3V7utEsS_pVaYe84fRYfM/export?format=csv&gid=796128965';
 
 // --- HELPER FUNKTIONEN FÜR HEADER/FOOTER ---
 function parseCSV(text) {
@@ -196,7 +198,8 @@ async function loadSettingsFromCSV() {
 // --- BESTELLUNG BESTÄTIGEN ---
 async function confirmOrder() {
     const urlParams = new URLSearchParams(window.location.search);
-    const orderId = urlParams.get('orderId') || urlParams.get('confirm');
+    // UPDATED: Added 'id' to match the backend email link generation
+    const orderId = urlParams.get('id') || urlParams.get('orderId') || urlParams.get('confirm');
 
     const uiIcon = document.getElementById('icon');
     const uiTitle = document.getElementById('title');
@@ -212,7 +215,8 @@ async function confirmOrder() {
     try {
         const response = await fetch(GAS_URL, {
             method: 'POST',
-            body: JSON.stringify({ action: 'confirm', token: orderId })
+            // UPDATED: Changed token to orderId to match backend expectations
+            body: JSON.stringify({ action: 'confirm', orderId: orderId })
         });
         
         const result = await response.json();
