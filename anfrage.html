@@ -34,7 +34,7 @@
     .social-icon{color:rgba(250,246,239,0.65);display:flex;align-items:center;transition:color 0.2s,transform 0.2s;}
     .social-icon:hover{color:var(--gold-l);transform:translateY(-2px);}
     .hamburger{display:none;flex-direction:column;justify-content:center;gap:6px;cursor:pointer;padding:5px;background:none;border:none;z-index:300;}
-    .hamburger span{display:block;width:24px;height:2px;background:var(--cream);border-radius:2px;transition:transform 0.3s,opacity 0.3s;}
+    .hamburger span{display:block;width:24px;height:2px;background:var(--cream);border-radius:2px;transition:transform 0.3s,opacity:0.3s;}
     .hamburger.open span:nth-child(1){transform:translateY(8px) rotate(45deg);}
     .hamburger.open span:nth-child(2){opacity:0;}
     .hamburger.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg);}
@@ -142,10 +142,10 @@
 
 <script>
 // ══════════════════════════════════════════════════════════════
-//  WEB APP URL & SETTINGS URL
+//  WEB APP URL & SETTINGS URL (UPDATED TO NEW IDs)
 // ══════════════════════════════════════════════════════════════
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzOq403kNYnhu0bsyS84B0H_-h_LopKyeJSXoXOs1WSqNCFjIpxVRa9zpV6gNKSUH8/exec";
-const GOOGLE_SHEET_SETTINGS_URL = 'https://docs.google.com/spreadsheets/d/1fP97sZGxXjA-vDOV2wpWtw16W74EhP_urhCaFIspjaQ/export?format=csv&gid=931186417';
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwsKkp6qULlCDlVNqPR5N_v0uv7uKm7X3hcgJhRFcaGLnDKTj5WTlLd14Irvbw9aF9E8w/exec";
+const GOOGLE_SHEET_SETTINGS_URL = 'https://docs.google.com/spreadsheets/d/1YuctUlkn8MGyF1qDSOe0Zf3V7utEsS_pVaYe84fRYfM/export?format=csv&gid=796128965';
 
 let maxBistroGuests = 20; // Standardwert, wird überschrieben
 
@@ -259,8 +259,7 @@ async function submitForm(e) {
         : 'Feier im Bistro';
 
     const payload = {
-        action        : 'eventRequest',
-        targetSheetGid: '875868487', // GID des Tabs, wo die Anfrage gespeichert werden soll
+        type          : 'catering', // ADDED: Required so the backend recognizes this as a catering request
         eventType     : eventTypeLabel,
         name          : name,
         email         : email,
@@ -280,7 +279,7 @@ async function submitForm(e) {
         let result = {};
         try { result = JSON.parse(text); } catch(e) { result = { success: res.ok }; }
 
-        if (result.success) {
+        if (result.success || result.status === "success") {
             showStatus('success', '✓ Ihre Anfrage wurde erfolgreich gesendet! Wir melden uns zeitnah bei Ihnen.');
             document.getElementById('anfrageForm').reset();
         } else {
