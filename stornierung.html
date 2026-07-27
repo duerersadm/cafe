@@ -153,9 +153,9 @@
     {% include footer.html %}
 
     <script>
-        // Angepasste URL, damit sie zur Reservierung/Bestätigung passt
-        const GAS_URL = "https://script.google.com/macros/s/AKfycbzOq403kNYnhu0bsyS84B0H_-h_LopKyeJSXoXOs1WSqNCFjIpxVRa9zpV6gNKSUH8/exec";
-        const GOOGLE_SHEET_SETTINGS_URL = 'https://docs.google.com/spreadsheets/d/1fP97sZGxXjA-vDOV2wpWtw16W74EhP_urhCaFIspjaQ/export?format=csv&gid=931186417';
+        // UPDATED: Settings for new Google Apps Script Web App & Google Sheet 
+        const GAS_URL = "https://script.google.com/macros/s/AKfycbwsKkp6qULlCDlVNqPR5N_v0uv7uKm7X3hcgJhRFcaGLnDKTj5WTlLd14Irvbw9aF9E8w/exec";
+        const GOOGLE_SHEET_SETTINGS_URL = 'https://docs.google.com/spreadsheets/d/1YuctUlkn8MGyF1qDSOe0Zf3V7utEsS_pVaYe84fRYfM/export?format=csv&gid=796128965';
 
         // --- HELPER FUNKTIONEN FÜR HEADER/FOOTER ---
         function parseCSV(text) {
@@ -251,10 +251,11 @@
             // 3. Stornierungs-Logik
             const container = document.getElementById('app-container');
             const params = new URLSearchParams(window.location.search);
-            const orderId = params.get('cancel');
-            const email = params.get('email');
+            
+            // UPDATED: Fetch 'id' instead of 'cancel' to match our backend logic
+            const orderId = params.get('id') || params.get('cancel');
 
-            if (!orderId || !email) {
+            if (!orderId) {
                 container.innerHTML = `
                     <div class="status-icon icon-err">❌</div>
                     <h2 class="title">Ungültiger Link</h2>
@@ -284,10 +285,10 @@
                 try {
                     const response = await fetch(GAS_URL, {
                         method: 'POST',
+                        // UPDATED: Now passing only the orderId as our backend doesn't require the email to cancel
                         body: JSON.stringify({
                             action: 'cancel',
-                            orderId: orderId,
-                            email: email
+                            orderId: orderId
                         })
                     });
 
@@ -297,7 +298,7 @@
                         container.innerHTML = `
                             <div class="status-icon icon-ok">✓</div>
                             <h2 class="title">Erfolgreich storniert</h2>
-                            <p class="desc">Ihre Reservierung <strong>#${orderId}</strong> wurde storniert. Sie erhalten in Kürze eine Bestätigung per E-Mail an ${email}.</p>
+                            <p class="desc">Ihre Reservierung <strong>#${orderId}</strong> wurde storniert. Sie erhalten in Kürze eine Bestätigung per E-Mail.</p>
                             <a href="menu-reservierung.html" class="btn btn-primary">Zurück zur Speisekarte</a>
                         `;
                     } else {
