@@ -1,6 +1,6 @@
 # DÜRERs Café & Bistro – Website
 
-**Live:** [duererscafehassfurt.github.io/cafe](https://duererscafehassfurt.github.io/cafe/)
+**Live:** [duerersadm.github.io/cafe](https://duerersadm.github.io/cafe/)
 
 Die Website des schülergeführten Cafés der Albrecht-Dürer-Mittelschule Haßfurt. Schülerinnen und Schüler kochen jeden Donnerstag frische, vegetarische Mittagsmenüs – Reservierungen werden direkt über diese Seite entgegengenommen.
 
@@ -15,7 +15,7 @@ Die Website des schülergeführten Cafés der Albrecht-Dürer-Mittelschule Haßf
 | `catering.html` | Catering- und Veranstaltungsseite |
 | `anfrage.html` | Kontaktformular für Catering-/Event-Anfragen |
 | `bestaetigung.html` | Bestätigungs-Landingpage (wird per E-Mail-Link aufgerufen) |
-| `stornierung.html` | Stornierungsseite (wird per E-Mail-Link aufgerufen) |
+| `stornieren.html` | Stornierungsseite (wird per E-Mail-Link aufgerufen) |
 | `impressum.html` | Impressum |
 | `datenschutz.html` | Datenschutzerklärung |
 
